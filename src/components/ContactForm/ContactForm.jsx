@@ -1,28 +1,57 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, Button } from './ContactForm.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactSlice';
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = ({ onSubmit }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.items);
+
+  const handleChange = e => {
+    const prop = e.currentTarget.name;
+    switch (prop) {
+      case 'name':
+        setName(e.currentTarget.value);
+        break;
+      case 'number':
+        setNumber(e.currentTarget.value);
+        break;
+      default:
+        throw new Error('Error');
+    }
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = e.target;
-    if (name.value.trim() === '' || number.value.trim() === '') {
-      alert('Please enter a name and a number');
-      return;
-    }
-    const newContact = {
+
+    const data = {
       id: Date.now().toString(),
-      name: name.value.trim(),
-      number: number.value.trim(),
+      name: name,
+      number: number,
     };
-    addContact(newContact);
-    name.value = '';
-    number.value = '';
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === data.name.toLowerCase()
+      )
+    ) {
+      setName('');
+      setNumber('');
+      return alert(`Number: ${data.name} is already in phonebook`);
+    }
+    dispatch(addContact(data));
+    setName('');
+    setNumber('');
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <Input
         type="text"
+        value={name}
+        onChange={handleChange}
         name="name"
         placeholder="Name"
         pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -31,6 +60,8 @@ const ContactForm = ({ addContact }) => {
       />
       <Input
         type="tel"
+        value={number}
+        onChange={handleChange}
         name="number"
         placeholder="Phone number"
         pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"

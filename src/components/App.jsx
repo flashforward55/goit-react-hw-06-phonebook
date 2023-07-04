@@ -5,8 +5,6 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 
 function App() {
-  const [filter, setFilter] = useState('');
-
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem('contacts')) ?? []
   );
@@ -28,23 +26,15 @@ function App() {
     setContacts(prevContacts => [...prevContacts, newContact]);
   };
 
-  const handleFilterChange = e => {
+  /*   const handleFilterChange = e => {
     setFilter(e.target.value);
-  };
+  }; */
 
-  const filterContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-
-  const deleteContact = contactId => {
+  /*  const deleteContact = contactId => {
     setContacts(prevContacts =>
       prevContacts.filter(contact => contact.id !== contactId)
     );
-  };
-
-  const filteredContacts = filterContacts();
+  }; */
 
   return (
     <AppContainer>

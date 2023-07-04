@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { ContactListContainer } from './ContactList.styled';
 import ContactListItems from './ContactListItems';
 import { useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ const ContactList = () => {
   );
 };
 
-ContactList.propTypes = {
+/* ContactList.propTypes = {
   filteredContacts: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
@@ -34,6 +34,6 @@ ContactList.propTypes = {
     }).isRequired
   ).isRequired,
   deleteContact: PropTypes.func.isRequired,
-};
+}; */
 
 export default ContactList;

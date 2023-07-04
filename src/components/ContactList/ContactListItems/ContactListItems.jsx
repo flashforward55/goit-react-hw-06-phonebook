@@ -25,12 +25,9 @@ const ContactListItems = ({ id, nameU, number }) => {
 };
 
 ContactListItems.propTypes = {
-  contact: PropTypes.exact({
-    id: PropTypes.string.isRequired,
-    nameU: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-  }).isRequired,
-  contactsDelete: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  number: PropTypes.string.isRequired,
 };
 
 export default ContactListItems;
