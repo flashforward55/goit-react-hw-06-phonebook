@@ -51,7 +51,7 @@ function App() {
       <Phonebook>Phonebook</Phonebook>
       <ContactForm addContact={addContact} />
       <Title>Contacts</Title>
-      <Filter filter={filter} onChange={handleFilterChange} />
+      <Filter /* filter={filter} onChange={handleFilterChange}  */ />
       <ContactList
         filteredContacts={filteredContacts}
         deleteContact={deleteContact}
