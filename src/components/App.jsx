@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+//import { useState, useEffect } from 'react';
 import { AppContainer, Phonebook, Title } from './App.styled';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
 
 function App() {
-  const [contacts, setContacts] = useState(
+  /* const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem('contacts')) ?? []
   );
 
@@ -25,7 +25,7 @@ function App() {
 
     setContacts(prevContacts => [...prevContacts, newContact]);
   };
-
+ */
   /*   const handleFilterChange = e => {
     setFilter(e.target.value);
   }; */
@@ -39,7 +39,7 @@ function App() {
   return (
     <AppContainer>
       <Phonebook>Phonebook</Phonebook>
-      <ContactForm addContact={addContact} />
+      <ContactForm /* addContact={addContact}  */ />
       <Title>Contacts</Title>
       <Filter /* filter={filter} onChange={handleFilterChange}  */ />
       <ContactList
