@@ -1,7 +1,7 @@
-//import PropTypes from 'prop-types';
-import { ContactListContainer } from './ContactList.styled';
-import ContactListItems from './ContactListItems';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import ContactListItems from './ContactListItems';
+import { ContactListContainer } from './ContactList.styled';
 
 const getVisibleContacts = (items, filter) =>
   items.filter(contact =>
@@ -25,15 +25,15 @@ const ContactList = () => {
   );
 };
 
-/* ContactList.propTypes = {
-  filteredContacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  deleteContact: PropTypes.func.isRequired,
-}; */
+ContactList.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
+  filter: PropTypes.string,
+};
 
 export default ContactList;
