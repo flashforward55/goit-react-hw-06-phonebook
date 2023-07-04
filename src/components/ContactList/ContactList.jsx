@@ -1,17 +1,26 @@
 import PropTypes from 'prop-types';
 import { ContactListContainer } from './ContactList.styled';
 import ContactListItems from './ContactListItems';
+import { useSelector } from 'react-redux';
 
-const ContactList = ({ filteredContacts, deleteContact }) => {
+const getVisibleContacts = (items, filter) =>
+  items.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
+const ContactList = () => {
+  const items = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
+  const contacts = getVisibleContacts(items, filter);
   return (
     <ContactListContainer>
-      {filteredContacts.map(contact => (
-        <ContactListItems
-          key={contact.id}
-          contact={contact}
-          deleteContact={deleteContact}
-        />
-      ))}
+      {contacts.length ? (
+        contacts.map(({ id, nameU, number }) => (
+          <ContactListItems key={id} id={id} name={nameU} number={number} />
+        ))
+      ) : (
+        <p>No contacts</p>
+      )}
     </ContactListContainer>
   );
 };

@@ -53,8 +53,8 @@ function App() {
       <Title>Contacts</Title>
       <Filter /* filter={filter} onChange={handleFilterChange}  */ />
       <ContactList
-        filteredContacts={filteredContacts}
-        deleteContact={deleteContact}
+      /* filteredContacts={filteredContacts}
+        deleteContact={deleteContact} */
       />
     </AppContainer>
   );
