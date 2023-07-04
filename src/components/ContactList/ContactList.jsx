@@ -15,8 +15,8 @@ const ContactList = () => {
   return (
     <ContactListContainer>
       {contacts.length ? (
-        contacts.map(({ id, nameU, number }) => (
-          <ContactListItems key={id} id={id} name={nameU} number={number} />
+        contacts.map(({ id, name, number }) => (
+          <ContactListItems key={id} id={id} name={name} number={number} />
         ))
       ) : (
         <p>No contacts</p>
