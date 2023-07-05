@@ -2,12 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const persistConfig = {
-  key: 'Contacts',
-  storage,
-  whitelist: ['items'],
-};
-
 const init = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -15,20 +9,26 @@ const init = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['contacts'],
+};
+
 const contactSlice = createSlice({
-  name: 'contacts',
+  name: 'phonebook',
   initialState: {
-    items: init,
+    contacts: init,
     filter: '',
   },
   reducers: {
-    addContact(state, { payload }) {
-      state.items.push(payload);
+    addContact: (state, { payload }) => {
+      state.contacts.push(payload);
     },
-    deleteContact(state, { payload }) {
-      state.items = state.items.filter(item => item.id !== payload);
+    deleteContact: (state, { payload }) => {
+      state.contacts = state.contacts.filter(contact => contact.id !== payload);
     },
-    filterContact(state, { payload }) {
+    filterContact: (state, { payload }) => {
       state.filter = payload;
     },
   },

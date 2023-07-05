@@ -3,19 +3,19 @@ import { useSelector } from 'react-redux';
 import ContactListItems from './ContactListItems';
 import { ContactListContainer } from './ContactList.styled';
 
-const getVisibleContacts = (items, filter) =>
-  items.filter(contact =>
+const getVisibleContacts = (contacts, filter) =>
+  contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
 const ContactList = () => {
-  const items = useSelector(state => state.contacts.items);
+  const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.contacts.filter);
-  const contacts = getVisibleContacts(items, filter);
+  const contactsVisible = getVisibleContacts(contacts, filter);
   return (
     <ContactListContainer>
-      {contacts.length ? (
-        contacts.map(({ id, name, number }) => (
+      {contactsVisible.length ? (
+        contactsVisible.map(({ id, name, number }) => (
           <ContactListItems key={id} id={id} name={name} number={number} />
         ))
       ) : (
@@ -26,7 +26,7 @@ const ContactList = () => {
 };
 
 ContactList.propTypes = {
-  items: PropTypes.arrayOf(
+  contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,

@@ -8,16 +8,16 @@ const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(state => state.contacts.contacts);
 
   const handleChange = e => {
-    const prop = e.currentTarget.name;
+    const prop = e.target.name;
     switch (prop) {
       case 'name':
-        setName(e.currentTarget.value);
+        setName(e.target.value);
         break;
       case 'number':
-        setNumber(e.currentTarget.value);
+        setNumber(e.target.value);
         break;
       default:
         throw new Error('Error');
